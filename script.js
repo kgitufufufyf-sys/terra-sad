@@ -1,3 +1,8 @@
+const header = document.querySelector('.header');
+const onScroll = () => header && header.classList.toggle('scrolled', window.scrollY > 20);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
 if (burger && nav) {
