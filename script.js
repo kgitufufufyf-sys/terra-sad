@@ -1,41 +1,40 @@
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
-burger.addEventListener('click', () => nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+burger.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+nav.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => nav.classList.remove('open'));
+});
 
-// filter
-const chips = document.querySelectorAll('.chip');
-const figs = document.querySelectorAll('#gallery figure');
-chips.forEach(c => c.addEventListener('click', () => {
-  chips.forEach(x => x.classList.remove('active'));
-  c.classList.add('active');
-  const f = c.dataset.filter;
-  figs.forEach(fig => {
-    fig.style.display = (f === 'all' || fig.dataset.cat === f) ? '' : 'none';
-  });
-}));
-
-// lightbox
-const lb = document.getElementById('lightbox');
-const lbImg = lb.querySelector('img');
-document.querySelectorAll('#gallery img').forEach(img => {
-  img.addEventListener('click', () => {
-    lbImg.src = img.src.replace('w=800','w=1400');
-    lb.classList.add('open');
+document.querySelectorAll('.chip').forEach((chip) => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach((item) => item.classList.remove('on'));
+    chip.classList.add('on');
+    const filter = chip.dataset.filter;
+    document.querySelectorAll('#gallery article').forEach((card) => {
+      card.hidden = filter !== 'all' && card.dataset.cat !== filter;
+    });
   });
 });
-lb.addEventListener('click', () => lb.classList.remove('open'));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 
-// fake form -> copy to clipboard
+const lightbox = document.getElementById('lightbox');
+document.querySelectorAll('#gallery article').forEach((card) => {
+  card.addEventListener('click', () => { lightbox.hidden = false; });
+});
+lightbox.addEventListener('click', () => { lightbox.hidden = true; });
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') lightbox.hidden = true;
+});
+
 const form = document.getElementById('leadForm');
 const ok = document.getElementById('formOk');
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const d = new FormData(form);
-  const text = `Заявка с сайта TERRA: ${d.get('name')} / ${d.get('phone')} / ${d.get('msg')||'-'}`;
-  try { await navigator.clipboard.writeText(text); } catch {}
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const data = new FormData(form);
+  const text = `Заявка TERRA\n${data.get('name')}\n${data.get('phone')}\n${data.get('msg') || '—'}`;
+  try { await navigator.clipboard.writeText(text); } catch (_) {}
   ok.style.display = 'block';
   form.reset();
-  setTimeout(()=> ok.style.display='none', 5000);
 });
