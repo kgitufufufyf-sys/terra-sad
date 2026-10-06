@@ -59,6 +59,16 @@ h3{font-size:22px;color:var(--ink)}
 .check{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:14px}
 .check input{width:auto;margin-top:3px}
 .note{margin:0}
+.scene{min-height:92vh;display:grid;align-items:center}
+.scene-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.scene .ph{opacity:0;transform:translateY(90px);transition:opacity .7s ease,transform .9s ease}
+.scene:nth-child(even) .ph{transform:translateX(70px)}
+.scene:nth-child(odd) .ph{transform:translateX(-70px)}
+.scene.in .ph{opacity:1;transform:none}
+.shot{display:block}
+.shot .ph{opacity:0;transform:translateY(48px);transition:opacity .6s ease,transform .7s ease}
+.shot.in .ph{opacity:1;transform:none}
+.scene a,.home-kicker a{border-bottom:1px solid var(--sage)}
 .footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted)}
 .footer-inner,.footer-links{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;display:flex;gap:16px;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--ink);border-radius:15px;padding:16px}
@@ -69,11 +79,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .burger{display:none;width:42px;height:42px;border:0;background:none;flex-direction:column;justify-content:center;gap:6px}
 .burger span{height:1px;background:var(--ink)}
 @media(max-width:860px){
-  .hero-grid,.split,.gallery,.grid6,.mosaic,.services-home,.band-home{grid-template-columns:1fr}
+  .hero-grid,.split,.gallery,.grid6,.mosaic,.services-home,.band-home,.scene-grid{grid-template-columns:1fr}
+  .scene{min-height:auto;padding:48px 0}
   .ph-hero{min-height:260px}
   .nav{display:none;position:absolute;inset:72px 0 auto;background:#fff;padding:16px 24px 22px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
   .nav.open{display:flex}
   .burger{display:flex}
   .cookie{flex-direction:column;align-items:stretch}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .scene .ph,.shot .ph{opacity:1;transform:none;transition:none}
+}

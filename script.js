@@ -38,6 +38,19 @@ if (form && ok) {
   });
 }
 
+const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const frames = document.querySelectorAll('.scene, .shot');
+if (motion) {
+  frames.forEach((frame) => frame.classList.add('in'));
+} else if (frames.length) {
+  const watcher = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { threshold: 0.35 });
+  frames.forEach((frame) => watcher.observe(frame));
+}
+
 const cookie = document.getElementById('cookie');
 const cookieOk = document.getElementById('cookieOk');
 if (cookie && localStorage.getItem('sihay-cookie') !== '1') cookie.hidden = false;
