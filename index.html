@@ -5,23 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TERRA — ландшафтная студия</title>
 <meta name="description" content="Проектируем и создаём частные сады под ключ: мощение, газон, дренаж, свет и озеленение." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
+<style>
+:root{--bg:#f3efe6;--paper:#fbfaf6;--ink:#1b1916;--muted:#6a645c;--line:#ddd4c6;--stone:#e6dfd2;--accent:#7d3a28;--serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit;color:inherit}
+.wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.03em;line-height:.98;margin:0}
+h1{font-size:clamp(56px,7.2vw,96px)}h2{font-size:clamp(36px,4vw,52px)}
+.eyebrow{margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.lead{max-width:38ch;font-size:18px;color:#3a352f}
+.header{position:sticky;top:0;z-index:20;background:rgba(243,239,230,.94);border-bottom:1px solid var(--line)}
+.header-inner{height:74px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--serif);font-size:26px;letter-spacing:.2em}
+.nav{display:flex;align-items:center;gap:28px}.nav a{font-size:14px;font-weight:650}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:999px;border:1px solid transparent;font-weight:700;cursor:pointer}
+.btn-dark{background:var(--ink);color:#f6f2ea}.btn-line{border-color:#b7ae9f;background:transparent}.full{width:100%}
+.burger{display:none;width:42px;height:42px;border:0;background:none;flex-direction:column;justify-content:center;gap:7px}.burger span{height:1.5px;background:var(--ink)}
+.hero{padding:54px 0 20px}.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:end}
+.hero-actions{display:flex;gap:12px;margin:32px 0 28px}.trust{display:flex;gap:32px;list-style:none;padding:0;margin:0}
+.trust strong{display:block;font-family:var(--serif);font-size:34px;font-weight:500}.trust li{color:var(--muted);font-size:13px}
+.frame small{display:flex;justify-content:space-between;margin-top:10px;color:var(--muted);font-size:13px}
+.ph{position:relative;min-height:190px;background:#cfc6b6;overflow:hidden}
+.ph::before{content:"";position:absolute;inset:16px;border:1px solid rgba(27,25,22,.28)}
+.ph::after{content:"ФОТО";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fbfaf6;border:1px solid var(--ink);padding:7px 14px;font-size:11px;font-weight:800;letter-spacing:.22em}
+.ph-hero{min-height:620px}.ph-a{min-height:460px}.ph-b{min-height:280px}
+.block{padding:84px 0}.stone{background:var(--stone)}.ink{background:var(--ink);color:#f6f2ea}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.head p{max-width:34ch;margin:0;color:var(--muted)}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cats a .ph{min-height:220px}.cats span{display:block;margin-top:10px;font-size:14px;font-weight:700}
+.band{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}.band div{padding:26px 22px 26px 0}.band strong{display:block}.band span{color:var(--muted);font-size:14px}
+.filters{display:flex;gap:8px}.chip{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:transparent;font-weight:700;cursor:pointer}.chip.on{background:var(--ink);color:#f6f2ea}
+.gallery{display:grid;grid-template-columns:1.25fr .85fr .9fr;gap:16px}.gallery article{cursor:zoom-in}.gallery article:nth-child(4){grid-column:span 2}
+.meta{padding:12px 0 4px}.meta p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #cfc6b6}.svc article{padding:28px 28px 28px 0;border-bottom:1px solid #cfc6b6;display:grid;gap:10px;align-content:start;min-height:230px}
+.svc span,.steps span{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.14em}.svc p,.steps p{margin:0;color:#4d473f}.svc b{margin-top:8px}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.prices article{background:var(--paper);border:1px solid var(--line);padding:28px;display:grid;gap:14px;align-content:start}
+.prices .hot{background:var(--ink);color:#f6f2ea}.sum{font-family:var(--serif);font-size:46px;margin:0}.prices ul{margin:0;padding-left:18px}.hot ul{color:#ddd4c6}.flag{margin:0;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#e7c2b4}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;list-style:none;padding:0;margin:0}.ink .steps p{color:#ddd4c6}.ink .eyebrow{color:#e7c2b4}
+.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}.faq details{border-bottom:1px solid var(--line);padding:16px 0}.faq summary{cursor:pointer;font-weight:700;font-size:18px}.faq p{color:#4d473f}
+.contacts{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:8px;font-size:20px}.contacts a{font-weight:750}
+.form{background:var(--paper);padding:8px 0 0;display:grid;gap:14px}.form label{display:grid;gap:6px;font-size:13px;font-weight:700}
+.form input,.form textarea{border:0;border-bottom:1px solid #b7ae9f;background:transparent;padding:12px 0}.form input:focus,.form textarea:focus{outline:none;border-color:var(--ink)}
+.form small{color:var(--muted)}.form-ok{display:none;margin:0;font-weight:700}
+.footer{border-top:1px solid var(--line);padding:22px 0}.footer-inner{display:flex;justify-content:space-between;font-size:14px}
+.lightbox{position:fixed;inset:0;background:rgba(27,25,22,.9);z-index:50;display:grid;place-items:center}.lightbox[hidden]{display:none}.lightbox .ph{width:min(860px,86vw);height:68vh}.lightbox button{position:absolute;top:18px;right:18px;border:0;background:#f6f2ea;min-height:40px;padding:0 14px;cursor:pointer}
+@media(max-width:900px){.hero-grid,.gallery,.svc,.prices,.steps,.split,.cats{grid-template-columns:1fr 1fr}.gallery article:nth-child(4){grid-column:auto}.band{grid-template-columns:1fr}.ph-hero{min-height:420px}.nav{display:none;position:absolute;inset:74px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--line);padding:18px 24px 24px;flex-direction:column;align-items:flex-start}.nav.open{display:flex}.burger{display:flex}}
+@media(max-width:640px){.wrap{width:min(100% - 32px,1180px)}.cats,.steps,.prices,.svc,.split,.hero-grid,.gallery{grid-template-columns:1fr}h1{font-size:48px}.hero-actions,.trust{flex-direction:column;align-items:flex-start}}
+</style>
 </head>
 <body>
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <span>Выезд и замер — 0 ₽ при заказе проекта</span>
-    <div class="topbar-links">
-      <a href="tel:+79000000000">+7 900 000-00-00</a>
-      <a href="https://t.me/username">Telegram</a>
-      <a href="https://wa.me/79000000000">WhatsApp</a>
-    </div>
-  </div>
-</div>
-
 <header class="header" id="top">
   <div class="wrap header-inner">
     <a href="#top" class="logo">TERRA</a>
@@ -53,32 +85,32 @@
         <li><strong>2 года</strong> гарантии</li>
       </ul>
     </div>
-    <figure class="hero-frame">
-      <div class="ph ph-hero" data-label="фото"></div>
-      <figcaption><span>Участок 12 соток</span><span>Мощение · газон · свет</span></figcaption>
+    <figure class="frame">
+      <div class="ph ph-hero"></div>
+      <small><span>12 соток</span><span>Мощение, газон, свет</span></small>
     </figure>
   </div>
 </section>
 
 <section class="cats">
   <div class="wrap">
-    <div class="section-kicker">
+    <div class="head">
       <h2>Что делаем</h2>
       <a href="#services">Все услуги</a>
     </div>
-    <div class="cat-grid">
-      <a href="#services" class="cat"><div class="ph" data-label="фото"></div><span>Мощение и дорожки</span></a>
-      <a href="#services" class="cat"><div class="ph" data-label="фото"></div><span>Террасы и площадки</span></a>
-      <a href="#services" class="cat"><div class="ph" data-label="фото"></div><span>Газон и посадки</span></a>
-      <a href="#services" class="cat"><div class="ph" data-label="фото"></div><span>Дренаж и ливнёвка</span></a>
-      <a href="#services" class="cat"><div class="ph" data-label="фото"></div><span>Свет и костровые</span></a>
-      <a href="#services" class="cat"><div class="ph" data-label="фото"></div><span>Подпорные стенки</span></a>
+    <div class="cats">
+      <a href="#services"><div class="ph"></div><span>Мощение и дорожки</span></a>
+      <a href="#services"><div class="ph"></div><span>Террасы и площадки</span></a>
+      <a href="#services"><div class="ph"></div><span>Газон и посадки</span></a>
+      <a href="#services"><div class="ph"></div><span>Дренаж и ливнёвка</span></a>
+      <a href="#services"><div class="ph"></div><span>Свет и костровые</span></a>
+      <a href="#services"><div class="ph"></div><span>Подпорные стенки</span></a>
     </div>
   </div>
 </section>
 
 <section class="strip">
-  <div class="wrap strip-grid">
+  <div class="band wrap">
     <div><strong>Образцы на участке</strong><span>Привозим плитку и камень — сравниваете цвет при своём свете</span></div>
     <div><strong>Смета до работ</strong><span>Полный расчёт и фиксация цены в договоре</span></div>
     <div><strong>Гарантия 2 года</strong><span>На мощение, дренаж и инженерные системы</span></div>
@@ -87,7 +119,7 @@
 
 <section id="works" class="section">
   <div class="wrap">
-    <div class="section-kicker">
+    <div class="head">
       <div>
         <p class="eyebrow">Портфолио</p>
         <h2>Именные сады</h2>
@@ -100,24 +132,24 @@
       </div>
     </div>
     <div class="gallery" id="gallery">
-      <article data-cat="garden"><div class="ph ph-tall" data-label="фото"></div><div class="meta"><h3>Замедление</h3><p>12 соток · сад и терраса</p></div></article>
-      <article data-cat="stone"><div class="ph" data-label="фото"></div><div class="meta"><h3>Стена</h3><p>8 соток · мощение и подпорная</p></div></article>
-      <article data-cat="lawn"><div class="ph" data-label="фото"></div><div class="meta"><h3>Ровный</h3><p>10 соток · газон и полив</p></div></article>
-      <article data-cat="stone"><div class="ph ph-wide" data-label="фото"></div><div class="meta"><h3>Феррум</h3><p>15 соток · дорожки и свет</p></div></article>
-      <article data-cat="garden"><div class="ph" data-label="фото"></div><div class="meta"><h3>Холм</h3><p>9 соток · цветники</p></div></article>
-      <article data-cat="lawn"><div class="ph" data-label="фото"></div><div class="meta"><h3>Променад</h3><p>6 соток · газон у дома</p></div></article>
+      <article data-cat="garden"><div class="ph ph-a"></div><div class="meta"><h3>Замедление</h3><p>12 соток · сад и терраса</p></div></article>
+      <article data-cat="stone"><div class="ph ph-b"></div><div class="meta"><h3>Стена</h3><p>8 соток · мощение</p></div></article>
+      <article data-cat="lawn"><div class="ph ph-b"></div><div class="meta"><h3>Ровный</h3><p>10 соток · газон</p></div></article>
+      <article data-cat="stone"><div class="ph ph-b"></div><div class="meta"><h3>Феррум</h3><p>15 соток · дорожки и свет</p></div></article>
+      <article data-cat="garden"><div class="ph ph-b"></div><div class="meta"><h3>Холм</h3><p>9 соток · цветники</p></div></article>
+      <article data-cat="lawn"><div class="ph ph-b"></div><div class="meta"><h3>Променад</h3><p>6 соток · газон у дома</p></div></article>
     </div>
   </div>
 </section>
 
 <section id="services" class="section section-stone">
   <div class="wrap">
-    <div class="section-kicker">
+    <div class="head">
       <div>
         <p class="eyebrow">Услуги</p>
         <h2>От эскиза до полива</h2>
       </div>
-      <p class="aside">Можно заказать один раздел или весь участок. Цена «от» — ориентир до замера.</p>
+      <p>Один раздел или весь участок. Цена «от» — до замера.</p>
     </div>
     <div class="svc">
       <article><span>01</span><h3>Дизайн-проект</h3><p>Замер, 2–3 концепции, дендроплан, 3D и смета. Понимаете сад до первой лопаты.</p><b>от 3 500 ₽ / сотка</b></article>
@@ -132,7 +164,7 @@
 
 <section id="prices" class="section">
   <div class="wrap">
-    <div class="section-kicker">
+    <div class="head">
       <div>
         <p class="eyebrow">Пакеты</p>
         <h2>Три способа начать</h2>
@@ -164,7 +196,7 @@
 
 <section id="process" class="section section-ink">
   <div class="wrap">
-    <div class="section-kicker light">
+    <div class="head">
       <div>
         <p class="eyebrow">Как идём</p>
         <h2>Пять шагов, без сюрпризов</h2>
@@ -180,18 +212,17 @@
   </div>
 </section>
 
-<section class="quote">
-  <div class="wrap quote-grid">
-    <div class="ph ph-quote" data-label="фото"></div>
-    <blockquote>
-      <p>«Не просто красиво. Участок должен оставаться сухим, ровным и живым через три зимы.»</p>
-      <footer>Руководитель студии TERRA</footer>
+<section class="block">
+  <div class="wrap split">
+    <div class="ph"></div>
+    <blockquote class="lead" style="font-family:Georgia,serif;font-size:clamp(28px,3vw,42px);line-height:1.15;max-width:none">
+      Не просто красиво. Участок должен оставаться сухим и ровным через три зимы.
     </blockquote>
   </div>
 </section>
 
 <section id="faq" class="section">
-  <div class="wrap faq-grid">
+  <div class="faq-grid split">
     <div>
       <p class="eyebrow">Вопросы</p>
       <h2>Коротко о главном</h2>
@@ -210,13 +241,11 @@
     <div>
       <p class="eyebrow">Контакты</p>
       <h2>Пришлите фото участка</h2>
-      <p class="lead">Ответим в течение дня: что реально сделать и в каком порядке цен. Замените телефон и мессенджеры на свои.</p>
+      <p class="lead">Напишите сотки и что хотите получить. Ответим в тот же день.</p>
       <ul class="contacts">
         <li><a href="tel:+79000000000">+7 900 000-00-00</a></li>
-        <li><a href="https://t.me/username">Telegram · @username</a></li>
+        <li><a href="https://t.me/username">Telegram</a></li>
         <li><a href="https://wa.me/79000000000">WhatsApp</a></li>
-        <li>hello@terra-sad.ru</li>
-        <li>Ваш город · выезд 0 ₽</li>
       </ul>
     </div>
     <form class="form" id="leadForm">
@@ -224,7 +253,7 @@
       <label>Телефон<input name="phone" required placeholder="+7" inputmode="tel" autocomplete="tel" /></label>
       <label>Участок<textarea name="msg" rows="4" placeholder="Сотки, что уже есть на участке, что хотите получить"></textarea></label>
       <button class="btn btn-dark full" type="submit">Жду ответ</button>
-      <small>Заявка пока копируется в буфер — отправьте её нам в мессенджер. Отправку на почту подключим отдельно.</small>
+      <small>Нажимая кнопку, вы соглашаетесь на обработку данных для ответа на заявку.</small>
       <p class="form-ok" id="formOk" role="status">Скопировано. Вставьте текст в Telegram или WhatsApp.</p>
     </form>
   </div>
@@ -240,7 +269,7 @@
 
 <div class="lightbox" id="lightbox" hidden>
   <button type="button" aria-label="Закрыть">Закрыть</button>
-  <div class="ph ph-light" data-label="фото"></div>
+  <div class="ph"></div>
 </div>
 <script src="script.js"></script>
 </body>
