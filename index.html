@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TERRA — ландшафтная студия</title>
+<title>sihay</title>
 <meta name="description" content="Проектируем и создаём частные сады под ключ: мощение, газон, дренаж, свет и озеленение." />
 <style>
 :root{--bg:#f3f6f1;--paper:#fbfcf8;--ink:#163024;--muted:#3f5c4a;--line:#d5e0d4;--stone:#e5efe4;--accent:#1f6b3a;--serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -46,8 +46,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;list-style:none;padding:0;margin:0}.ink .steps p{color:#d7e6da}.ink .eyebrow{color:#b7e0c4}
 .split{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}.faq details{border-bottom:1px solid var(--line);padding:16px 0}.faq summary{cursor:pointer;font-weight:700;font-size:18px}.faq p{color:#2d4a38}
 .contacts{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:8px;font-size:20px}.contacts a{font-weight:750}
-.form{background:var(--paper);padding:8px 0 0;display:grid;gap:14px}.form label{display:grid;gap:6px;font-size:13px;font-weight:700}
-.form input,.form textarea{border:0;border-bottom:1px solid #7d9a86;background:transparent;padding:12px 0}.form input:focus,.form textarea:focus{outline:none;border-color:var(--accent)}
+.form{display:grid;gap:16px;padding-bottom:8px}.form label{display:grid;gap:6px;font-size:14px;font-weight:700}
+.form input{width:100%;box-sizing:border-box;border:1px solid #7d9a86;background:#fff;border-radius:10px;padding:14px 12px}.form input:focus{outline:3px solid var(--accent);border-color:var(--accent)}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:500}.check input{margin-top:4px}
 .form small{color:var(--muted)}.form-ok{display:none;margin:0;font-weight:700}
 .footer-links{display:flex;gap:16px;flex-wrap:wrap}.legal{max-width:760px}.legal h1{font-size:48px;margin-bottom:12px}.legal h2{font-size:28px;margin:28px 0 8px}.legal p,.legal li{color:#2d4a38}
@@ -61,11 +61,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <body>
 <header class="header" id="top">
   <div class="wrap header-inner">
-    <a href="#top" class="logo">TERRA</a>
+    <a href="#top" class="logo">sihay</a>
     <nav class="nav" id="nav">
       <a href="#works">Работы</a>
       <a href="#services">Услуги</a>
-      <a href="#prices">Цены</a>
       <a href="#process">Процесс</a>
       <a href="#faq">Вопросы</a>
       <a href="#contacts" class="btn btn-dark">Обсудить участок</a>
@@ -154,47 +153,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         <p class="eyebrow">Услуги</p>
         <h2>От эскиза до полива</h2>
       </div>
-      <p>Цена «от» — ориентир до замера. Итог фиксируется в договоре, скрытых доплат на сайте нет.</p>
+      <p>Состав работ и стоимость считаем после разговора и замера. На сайте цен нет.</p>
     </div>
     <div class="svc">
-      <article><span>01</span><h3>Дизайн-проект</h3><p>Замер, 2–3 концепции, дендроплан, 3D и смета. Понимаете сад до первой лопаты.</p><b>от 3 500 ₽ / сотка</b></article>
-      <article><span>02</span><h3>Мощение</h3><p>Дорожки, парковка, ступени. Камень и плитка под нагрузку и климат, без «поплыло весной».</p><b>от 3 200 ₽ / м²</b></article>
-      <article><span>03</span><h3>Озеленение</h3><p>Деревья, живые изгороди, цветники. Подбираем то, что выживет именно у вас.</p><b>от 1 800 ₽ / м²</b></article>
-      <article><span>04</span><h3>Газон и полив</h3><p>Рулонный газон за день и автополив с датчиком дождя.</p><b>от 900 ₽ / м²</b></article>
-      <article><span>05</span><h3>Дренаж и ливнёвка</h3><p>Уводим воду от фундамента и газона. Участок сухой после ливня.</p><b>от 1 000 ₽ / м.п.</b></article>
-      <article><span>06</span><h3>Свет</h3><p>Подсветка дорожек и посадок, 12 В, чтобы сад работал и вечером.</p><b>от 45 000 ₽</b></article>
-    </div>
-  </div>
-</section>
-
-<section id="prices" class="block">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow">Пакеты</p>
-        <h2>Три способа начать</h2>
-      </div>
-    </div>
-    <div class="prices">
-      <article>
-        <h3>Эскиз</h3>
-        <p class="sum">29 000 ₽</p>
-        <ul><li>Замер и фотофиксация</li><li>2 концепции планировки</li><li>Ведомость растений</li><li>Срок — 7 дней</li></ul>
-        <a href="#contacts" class="btn btn-line full">Выбрать эскиз</a>
-      </article>
-      <article class="hot">
-        <p class="flag">Чаще берут</p>
-        <h3>Проект</h3>
-        <p class="sum">59 000 ₽</p>
-        <ul><li>Всё из «Эскиз»</li><li>3D-визуализация</li><li>Дендроплан и полив</li><li>Смета под ключ</li></ul>
-        <a href="#contacts" class="btn btn-dark full">Выбрать проект</a>
-      </article>
-      <article>
-        <h3>Под ключ</h3>
-        <p class="sum">от 4 900 ₽/м²</p>
-        <ul><li>Проект и все работы</li><li>Материалы и растения</li><li>Свет, полив, газон</li><li>Месяц ухода в подарок</li></ul>
-        <a href="#contacts" class="btn btn-line full">Запросить смету</a>
-      </article>
+      <article><span>01</span><h3>Дизайн-проект</h3><p>Замер, концепции, дендроплан и смета.</p></article>
+      <article><span>02</span><h3>Мощение</h3><p>Дорожки, парковка, ступени.</p></article>
+      <article><span>03</span><h3>Озеленение</h3><p>Деревья, живые изгороди, цветники.</p></article>
+      <article><span>04</span><h3>Газон и полив</h3><p>Газон и автоматический полив.</p></article>
+      <article><span>05</span><h3>Дренаж и ливнёвка</h3><p>Отвод воды от дома и газона.</p></article>
+      <article><span>06</span><h3>Свет</h3><p>Подсветка дорожек и посадок.</p></article>
     </div>
   </div>
 </section>
@@ -233,11 +200,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <h2>Коротко о главном</h2>
     </div>
     <div class="faq">
-      <details open><summary>Сколько стоит проект?</summary><p>Эскиз — 29 000 ₽, полный проект — 59 000 ₽. Точная смета работ — после замера, потому что зависит от рельефа и материалов.</p></details>
+      <details><summary>Сколько это стоит?</summary><p>На сайте цен нет. Сумму называем после разговора об участке.</p></details>
       <details><summary>Можно заказать только мощение или дренаж?</summary><p>Да. Проект, газон, полив, свет и посадки берутся отдельно. Под ключ — если хотите не координировать подрядчиков сами.</p></details>
       <details><summary>Когда лучше начинать?</summary><p>Проект — в любой месяц. Земляные работы и посадки — с апреля по октябрь, мощение — пока грунт не промёрз.</p></details>
       <details><summary>Что с гарантией?</summary><p>Срок гарантии на работы указываем в договоре после замера. На растения он зависит от сезона и ухода.</p></details>
-      <details><summary>Как удалить свои данные?</summary><p>Напишите на <a href="mailto:hello@terra-sad.ru">hello@terra-sad.ru</a> с темой «Удалить данные». Удалим имя и телефон, если нет законной причины их хранить. Подробнее — в <a href="privacy.html">политике</a>.</p></details>
+      <details><summary>Как удалить свои данные?</summary><p>Напишите через контакты на сайте, когда они будут указаны, с темой «Удалить данные». Подробнее — в <a href="privacy.html">политике</a>.</p></details>
     </div>
   </div>
 </section>
@@ -246,18 +213,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="wrap split">
     <div>
       <p class="eyebrow">Контакты</p>
-      <h2>Пришлите фото участка</h2>
-      <p class="lead">Напишите сотки и что хотите получить. Ответим в тот же день.</p>
+      <h2>Напишите</h2>
+      <p class="lead">Имя и телефон. Больше ничего не спрашиваем.</p>
       <ul class="contacts">
-        <li><a href="tel:+79000000000">+7 900 000-00-00</a></li>
-        <li><a href="https://t.me/username">Telegram</a></li>
-        <li><a href="https://wa.me/79000000000">WhatsApp</a></li>
+        <li><a href="#contacts">Телефон и мессенджеры добавим, когда будут ваши</a></li>
       </ul>
     </div>
     <form class="form" id="leadForm">
-      <label>Имя<input name="name" required placeholder="Как к вам обращаться" autocomplete="name" /></label>
-      <label>Телефон<input name="phone" required placeholder="+7" inputmode="tel" autocomplete="tel" /></label>
-      <label>Комментарий<textarea name="msg" rows="4" placeholder="Что хотите обсудить"></textarea></label>
+      <label>Имя<input name="name" required autocomplete="name" /></label>
+      <label>Телефон<input name="phone" required inputmode="tel" autocomplete="tel" /></label>
       <label class="check"><input type="checkbox" name="adult" required /> Мне есть 18 лет. Детские данные не собираем.</label>
       <label class="check"><input type="checkbox" name="consent" required /> Согласен на обработку имени и телефона, чтобы мне ответили. <a href="privacy.html">Политика</a></label>
       <button class="btn btn-dark full" type="submit">Жду ответ</button>
@@ -268,7 +232,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <span>TERRA · hello@terra-sad.ru</span>
+    <span>sihay</span>
     <nav class="footer-links" aria-label="Документы">
       <a href="privacy.html">Конфиденциальность</a>
       <a href="terms.html">Условия</a>
