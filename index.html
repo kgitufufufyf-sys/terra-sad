@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>sihay</title>
 <meta name="description" content="Ландшафтная студия sihay: проект, мощение, газон, дренаж, свет и посадки." />
+<meta name="theme-color" content="#f3f6f1" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<a class="skip" href="#content">К содержанию</a>
 <header class="header">
   <div class="wrap header-inner">
     <a class="logo" href="index.html">sihay</a>
@@ -21,7 +23,7 @@
     <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span></button>
   </div>
 </header>
-<main>
+<main id="content">
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -36,17 +38,54 @@
       <div class="ph ph-hero" role="img" aria-label="Заглушка фото сада"></div>
     </div>
   </section>
-  <section class="page">
+  <section class="home-section">
     <div class="wrap">
-      <div class="head"><h2>Куда дальше</h2></div>
-      <div class="grid6">
-        <a href="works.html"><div class="ph" role="img" aria-label="Заглушка фото работ"></div><span>Работы</span></a>
-        <a href="services.html"><div class="ph" role="img" aria-label="Заглушка фото услуг"></div><span>Услуги</span></a>
-        <a href="process.html"><div class="ph" role="img" aria-label="Заглушка фото процесса"></div><span>Процесс</span></a>
-        <a href="faq.html"><div class="ph" role="img" aria-label="Заглушка фото вопросов"></div><span>Вопросы</span></a>
-        <a href="contacts.html"><div class="ph" role="img" aria-label="Заглушка фото заявки"></div><span>Заявка</span></a>
-        <a href="services.html#drenazh"><div class="ph" role="img" aria-label="Заглушка фото дренажа"></div><span>Дренаж</span></a>
+      <div class="band-home">
+        <div><strong>Сначала план</strong><span>Смотрим участок и только потом называем состав работ.</span></div>
+        <div><strong>Одна команда</strong><span>Проект и работы не раскидываем по разным подрядчикам.</span></div>
+        <div><strong>Смета до старта</strong><span>Сумму фиксируем в договоре, не на этой странице.</span></div>
       </div>
+      <div class="home-kicker"><h2>Услуги</h2><a href="services.html">Все услуги</a></div>
+      <div class="services-home">
+        <a class="card" href="services.html#proekt"><h3>Проект</h3><p>Замер, планировка и смета.</p></a>
+        <a class="card" href="services.html#moshenie"><h3>Мощение</h3><p>Дорожки, парковка, ступени.</p></a>
+        <a class="card" href="services.html#gazon"><h3>Газон</h3><p>Газон и автополив.</p></a>
+        <a class="card" href="services.html#drenazh"><h3>Дренаж</h3><p>Вода уходит от дома.</p></a>
+        <a class="card" href="services.html#ozelenenie"><h3>Посадки</h3><p>Деревья, изгороди, цветники.</p></a>
+        <a class="card" href="services.html#svet"><h3>Свет</h3><p>Подсветка дорожек и сада.</p></a>
+      </div>
+    </div>
+  </section>
+  <section class="home-section">
+    <div class="wrap">
+      <div class="home-kicker"><h2>Работы</h2><a href="works.html">Открыть портфолио</a></div>
+      <div class="mosaic">
+        <a href="works.html#zamedlenie"><div class="ph ph-hero" role="img" aria-label="Заглушка фото: сад Замедление"></div><span>Замедление</span></a>
+        <div class="stack">
+          <a href="works.html#stena"><div class="ph" role="img" aria-label="Заглушка фото: мощение"></div><span>Стена</span></a>
+          <a href="works.html#rovny"><div class="ph" role="img" aria-label="Заглушка фото: газон"></div><span>Ровный</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="home-section ink">
+    <div class="wrap">
+      <div class="home-kicker"><h2>Как идём</h2><a href="process.html">Подробнее</a></div>
+      <div class="services-home">
+        <div class="card"><span>01</span><h3>Заявка</h3><p>Имя и телефон.</p></div>
+        <div class="card"><span>02</span><h3>Разговор</h3><p>Что есть и что нужно.</p></div>
+        <div class="card"><span>03</span><h3>Договор</h3><p>Смета до работ.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="home-section">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Заявка</p>
+        <h2>Два поля, без анкеты</h2>
+        <p class="lead">Имя и телефон. Комментарий не спрашиваем.</p>
+      </div>
+      <a class="btn btn-dark" href="contacts.html">Перейти к заявке</a>
     </div>
   </section>
 </main>
