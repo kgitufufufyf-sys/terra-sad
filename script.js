@@ -4,24 +4,6 @@ window.addEventListener('pageshow', () => {
   if (!location.hash) window.scrollTo(0, 0);
 });
 
-const hero = document.getElementById('hero');
-const heroFrame = document.querySelector('.hero-frame');
-if (hero && heroFrame && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const updateHero = () => {
-    const progress = Math.min(Math.max(window.scrollY / (hero.offsetHeight * .72), 0), 1);
-    const fullWidth = hero.clientWidth / heroFrame.offsetWidth;
-    const fullHeight = hero.clientHeight / heroFrame.offsetHeight;
-    const scale = 1 + progress * (Math.max(fullWidth, fullHeight) * 1.08 - 1);
-    heroFrame.style.transform = `translate(-50%, -50%) scale(${scale})`;
-    heroFrame.style.borderRadius = `${18 * (1 - progress)}px`;
-    document.querySelector('.hero-photo').style.opacity = String(1 - progress * .75);
-    document.querySelector('.hero-copy').style.opacity = String(1 - progress * 1.15);
-  };
-  updateHero();
-  window.addEventListener('scroll', updateHero, { passive: true });
-  window.addEventListener('resize', updateHero);
-}
-
 const header = document.querySelector('.header');
 const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 20);
 updateHeader();
