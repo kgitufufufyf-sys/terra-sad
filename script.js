@@ -1,3 +1,9 @@
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!location.hash) window.scrollTo(0, 0);
+window.addEventListener('pageshow', () => {
+  if (!location.hash) window.scrollTo(0, 0);
+});
+
 const header = document.querySelector('.header');
 const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 20);
 updateHeader();
