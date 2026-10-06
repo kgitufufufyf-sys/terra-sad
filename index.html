@@ -4,232 +4,52 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>sihay</title>
-<meta name="description" content="Проектируем и создаём частные сады под ключ: мощение, газон, дренаж, свет и озеленение." />
-<style>
-:root{--bg:#f3f6f1;--paper:#fbfcf8;--ink:#163024;--muted:#3f5c4a;--line:#d5e0d4;--stone:#e5efe4;--accent:#1f6b3a;--serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
-a{color:inherit;text-decoration:none}button,input,textarea{font:inherit;color:inherit}
-.wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
-h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.03em;line-height:.98;margin:0}
-h1{font-size:clamp(56px,7.2vw,96px)}h2{font-size:clamp(36px,4vw,52px)}
-.eyebrow{margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-.lead{max-width:38ch;font-size:18px;color:#3a352f}
-.header{position:sticky;top:0;z-index:20;background:rgba(243,246,241,.94);border-bottom:1px solid var(--line)}
-.header-inner{height:74px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--serif);font-size:26px;letter-spacing:.2em}
-.nav{display:flex;align-items:center;gap:28px}.nav a{font-size:14px;font-weight:650}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:999px;border:1px solid transparent;font-weight:700;cursor:pointer}
-.btn-dark{background:var(--accent);color:#f4faf6}.btn-line{border-color:#7d9a86;background:transparent;color:var(--ink)}.full{width:100%}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.burger{display:none;width:42px;height:42px;border:0;background:none;flex-direction:column;justify-content:center;gap:7px}.burger span{height:1.5px;background:var(--ink)}
-.hero{padding:54px 0 20px}.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:end}
-.hero-actions{display:flex;gap:12px;margin:32px 0 28px}.trust{display:flex;gap:32px;list-style:none;padding:0;margin:0}
-.trust strong{display:block;font-family:var(--serif);font-size:34px;font-weight:500}.trust li{color:var(--muted);font-size:13px}
-.frame small{display:flex;justify-content:space-between;margin-top:10px;color:var(--muted);font-size:13px}
-.ph{position:relative;min-height:190px;background:#b7cbb8;overflow:hidden}
-.ph::before{content:"";position:absolute;inset:16px;border:1px solid rgba(22,48,36,.28)}
-.ph::after{content:"ФОТО";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fbfcf8;border:1px solid var(--ink);padding:7px 14px;font-size:11px;font-weight:800;letter-spacing:.22em}
-.ph-hero{min-height:620px}.ph-a{min-height:460px}.ph-b{min-height:280px}
-.block{padding:84px 0}.stone{background:var(--stone)}.ink{background:#143326;color:#f4faf6}
-.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.head p{max-width:34ch;margin:0;color:var(--muted)}
-.cats a .ph,.grid6 a .ph{min-height:220px}.cats span,.grid6 span{display:block;margin-top:10px;font-size:14px;font-weight:700}
-.band{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}.band div{padding:26px 22px 26px 0}.band strong{display:block}.band span{color:var(--muted);font-size:14px}
-.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.filters{display:flex;gap:8px}.chip{min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:transparent;font-weight:700;cursor:pointer}.chip.on{background:var(--accent);color:#f4faf6}
-.gallery{display:grid;grid-template-columns:1.25fr .85fr .9fr;gap:16px}.gallery article{cursor:zoom-in}.gallery article:nth-child(4){grid-column:span 2}
-.meta{padding:12px 0 4px}.meta p{margin:4px 0 0;color:var(--muted);font-size:14px}
-.svc{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #c5d7c6}.svc article{padding:28px 28px 28px 0;border-bottom:1px solid #c5d7c6;display:grid;gap:10px;align-content:start;min-height:230px}
-.svc span,.steps span{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.14em}.svc p,.steps p{margin:0;color:#2d4a38}.svc b{margin-top:8px}
-.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.prices article{background:var(--paper);border:1px solid var(--line);padding:28px;display:grid;gap:14px;align-content:start}
-.prices .hot{background:#143326;color:#f4faf6}.sum{font-family:var(--serif);font-size:46px;margin:0}.prices ul{margin:0;padding-left:18px}.hot ul{color:#d7e6da}.flag{margin:0;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#b7e0c4}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;list-style:none;padding:0;margin:0}.ink .steps p{color:#d7e6da}.ink .eyebrow{color:#b7e0c4}
-.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}.faq details{border-bottom:1px solid var(--line);padding:16px 0}.faq summary{cursor:pointer;font-weight:700;font-size:18px}.faq p{color:#2d4a38}
-.contacts{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:8px;font-size:20px}.contacts a{font-weight:750}
-.form{display:grid;gap:16px;padding-bottom:8px}.form label{display:grid;gap:6px;font-size:14px;font-weight:700}
-.form input{width:100%;box-sizing:border-box;border:1px solid #7d9a86;background:#fff;border-radius:10px;padding:14px 12px}.form input:focus{outline:3px solid var(--accent);border-color:var(--accent)}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:500}.check input{margin-top:4px}
-.form small{color:var(--muted)}.form-ok{display:none;margin:0;font-weight:700}
-.footer-links{display:flex;gap:16px;flex-wrap:wrap}.legal{max-width:760px}.legal h1{font-size:48px;margin-bottom:12px}.legal h2{font-size:28px;margin:28px 0 8px}.legal p,.legal li{color:#2d4a38}
-.footer{border-top:1px solid var(--line);padding:22px 0}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
-.cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;background:#143326;color:#f4faf6;border-radius:16px;padding:16px 18px;display:flex;gap:16px;align-items:center;justify-content:space-between}.cookie[hidden]{display:none}.cookie p{margin:0;max-width:70ch}.cookie a{text-decoration:underline}
-.lightbox{position:fixed;inset:0;background:rgba(20,51,38,.9);z-index:50;display:grid;place-items:center}.lightbox[hidden]{display:none}.lightbox .ph{width:min(860px,86vw);height:68vh}.lightbox button{position:absolute;top:18px;right:18px;border:0;background:#f4faf6;min-height:40px;padding:0 14px;cursor:pointer}
-@media(max-width:900px){.hero-grid,.gallery,.svc,.prices,.steps,.split,.grid6{grid-template-columns:1fr 1fr}.gallery article:nth-child(4){grid-column:auto}.band{grid-template-columns:1fr}.ph-hero{min-height:420px}.nav{display:none;position:absolute;inset:74px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--line);padding:18px 24px 24px;flex-direction:column;align-items:flex-start}.nav.open{display:flex}.burger{display:flex}.cookie{flex-direction:column;align-items:stretch}}
-@media(max-width:640px){.wrap{width:min(100% - 32px,1180px)}.grid6,.steps,.prices,.svc,.split,.hero-grid,.gallery{grid-template-columns:1fr}h1{font-size:48px}.hero-actions,.trust{flex-direction:column;align-items:flex-start}}
-</style>
+<meta name="description" content="Ландшафтная студия sihay: проект, мощение, газон, дренаж, свет и посадки." />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="header" id="top">
+<header class="header">
   <div class="wrap header-inner">
-    <a href="#top" class="logo">sihay</a>
+    <a class="logo" href="index.html">sihay</a>
     <nav class="nav" id="nav">
-      <a href="#works">Работы</a>
-      <a href="#services">Услуги</a>
-      <a href="#process">Процесс</a>
-      <a href="#faq">Вопросы</a>
-      <a href="#contacts" class="btn btn-dark">Обсудить участок</a>
+      <a href="works.html">Работы</a>
+      <a href="services.html">Услуги</a>
+      <a href="process.html">Процесс</a>
+      <a href="faq.html">Вопросы</a>
+      <a class="btn btn-dark" href="contacts.html">Обсудить участок</a>
     </nav>
     <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span></button>
   </div>
 </header>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Ландшафтная студия · частные сады</p>
-      <h1>Сад начинается<br>с камня и плана</h1>
-      <p class="lead">Проектируем и собираем участки: мощение, террасы, газон, дренаж, свет и посадки. Смету показываем до начала работ.</p>
-      <div class="hero-actions">
-        <a href="#contacts" class="btn btn-dark">Бесплатная консультация</a>
-        <a href="#works" class="btn btn-line">Смотреть работы</a>
-      </div>
-      <ul class="trust">
-        <li><strong>Проект</strong> до работ</li>
-        <li><strong>Смета</strong> в договоре</li>
-        <li><strong>Один</strong> подрядчик</li>
-      </ul>
-    </div>
-    <figure class="frame">
-      <div class="ph ph-hero" role="img" aria-label="Заглушка фото: сад с мощением и газоном"></div>
-      <small><span>Пример участка</span><span>Мощение, газон, свет</span></small>
-    </figure>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap">
-    <div class="head">
-      <h2>Что делаем</h2>
-      <a href="#services">Все услуги</a>
-    </div>
-    <div class="grid6">
-      <a href="#services"><div class="ph" role="img" aria-label="Заглушка фото: мощение и дорожки"></div><span>Мощение и дорожки</span></a>
-      <a href="#services"><div class="ph" role="img" aria-label="Заглушка фото: терраса"></div><span>Террасы и площадки</span></a>
-      <a href="#services"><div class="ph" role="img" aria-label="Заглушка фото: газон и посадки"></div><span>Газон и посадки</span></a>
-      <a href="#services"><div class="ph" role="img" aria-label="Заглушка фото: дренаж"></div><span>Дренаж и ливнёвка</span></a>
-      <a href="#services"><div class="ph" role="img" aria-label="Заглушка фото: садовый свет"></div><span>Свет и костровые</span></a>
-      <a href="#services"><div class="ph" role="img" aria-label="Заглушка фото: подпорная стенка"></div><span>Подпорные стенки</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="strip">
-  <div class="band wrap">
-    <div><strong>Образцы на участке</strong><span>Привозим плитку и камень — сравниваете цвет при своём свете</span></div>
-    <div><strong>Смета до работ</strong><span>Полный расчёт и фиксация цены в договоре</span></div>
-    <div><strong>Гарантия в договоре</strong><span>Срок пишем после замера, до оплаты</span></div>
-  </div>
-</section>
-
-<section id="works" class="block">
-  <div class="wrap">
-    <div class="head">
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Портфолио</p>
-        <h2>Именные сады</h2>
+        <p class="eyebrow">Ландшафтная студия</p>
+        <h1>Сад начинается с камня и плана</h1>
+        <p class="lead">Проект, мощение, газон, дренаж, свет и посадки. Стоимость называем после разговора, на сайте её нет.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="contacts.html">Оставить заявку</a>
+          <a class="btn btn-line" href="works.html">Смотреть работы</a>
+        </div>
       </div>
-      <div class="filters" role="tablist">
-        <button class="chip on" data-filter="all">Все</button>
-        <button class="chip" data-filter="garden">Сады</button>
-        <button class="chip" data-filter="stone">Камень</button>
-        <button class="chip" data-filter="lawn">Газон</button>
-      </div>
+      <div class="ph ph-hero" role="img" aria-label="Заглушка фото сада"></div>
     </div>
-    <div class="gallery" id="gallery">
-      <article data-cat="garden" tabindex="0"><div class="ph ph-a" role="img" aria-label="Заглушка фото: сад Замедление"></div><div class="meta"><h3>Замедление</h3><p>Пример: сад и терраса</p></div></article>
-      <article data-cat="stone" tabindex="0"><div class="ph ph-b" role="img" aria-label="Заглушка фото: мощение Стена"></div><div class="meta"><h3>Стена</h3><p>Пример: мощение</p></div></article>
-      <article data-cat="lawn" tabindex="0"><div class="ph ph-b" role="img" aria-label="Заглушка фото: газон Ровный"></div><div class="meta"><h3>Ровный</h3><p>Пример: газон</p></div></article>
-      <article data-cat="stone" tabindex="0"><div class="ph ph-b" role="img" aria-label="Заглушка фото: дорожки Феррум"></div><div class="meta"><h3>Феррум</h3><p>Пример: дорожки и свет</p></div></article>
-      <article data-cat="garden" tabindex="0"><div class="ph ph-b" role="img" aria-label="Заглушка фото: цветник Холм"></div><div class="meta"><h3>Холм</h3><p>Пример: цветники</p></div></article>
-      <article data-cat="lawn" tabindex="0"><div class="ph ph-b" role="img" aria-label="Заглушка фото: газон Променад"></div><div class="meta"><h3>Променад</h3><p>Пример: газон у дома</p></div></article>
-    </div>
-  </div>
-</section>
-
-<section id="services" class="block stone">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow">Услуги</p>
-        <h2>От эскиза до полива</h2>
-      </div>
-      <p>Состав работ и стоимость считаем после разговора и замера. На сайте цен нет.</p>
-    </div>
-    <div class="svc">
-      <article><span>01</span><h3>Дизайн-проект</h3><p>Замер, концепции, дендроплан и смета.</p></article>
-      <article><span>02</span><h3>Мощение</h3><p>Дорожки, парковка, ступени.</p></article>
-      <article><span>03</span><h3>Озеленение</h3><p>Деревья, живые изгороди, цветники.</p></article>
-      <article><span>04</span><h3>Газон и полив</h3><p>Газон и автоматический полив.</p></article>
-      <article><span>05</span><h3>Дренаж и ливнёвка</h3><p>Отвод воды от дома и газона.</p></article>
-      <article><span>06</span><h3>Свет</h3><p>Подсветка дорожек и посадок.</p></article>
-    </div>
-  </div>
-</section>
-
-<section id="process" class="block ink">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow">Как идём</p>
-        <h2>Пять шагов, без сюрпризов</h2>
+  </section>
+  <section class="page">
+    <div class="wrap">
+      <div class="head"><h2>Куда дальше</h2></div>
+      <div class="grid6">
+        <a href="works.html"><div class="ph" role="img" aria-label="Заглушка фото работ"></div><span>Работы</span></a>
+        <a href="services.html"><div class="ph" role="img" aria-label="Заглушка фото услуг"></div><span>Услуги</span></a>
+        <a href="process.html"><div class="ph" role="img" aria-label="Заглушка фото процесса"></div><span>Процесс</span></a>
+        <a href="faq.html"><div class="ph" role="img" aria-label="Заглушка фото вопросов"></div><span>Вопросы</span></a>
+        <a href="contacts.html"><div class="ph" role="img" aria-label="Заглушка фото заявки"></div><span>Заявка</span></a>
+        <a href="services.html#drenazh"><div class="ph" role="img" aria-label="Заглушка фото дренажа"></div><span>Дренаж</span></a>
       </div>
     </div>
-    <ol class="steps">
-      <li><span>01</span><h3>Заявка</h3><p>10 минут в Telegram или по телефону — понимаем задачу и бюджет.</p></li>
-      <li><span>02</span><h3>Замер</h3><p>Приезжаем, снимаем рельеф, фотографируем, обсуждаем сценарии.</p></li>
-      <li><span>03</span><h3>Проект</h3><p>2–3 планировки. Правим, пока не скажете «да, вот так».</p></li>
-      <li><span>04</span><h3>Смета</h3><p>Фиксируем стоимость и график в договоре до выхода на участок.</p></li>
-      <li><span>05</span><h3>Сад</h3><p>Работы, фотоотчёт раз в 3 дня, сдача и гарантия.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap split">
-<div class="ph" role="img" aria-label="Заглушка фото: готовый сад"></div>
-    <blockquote class="lead" style="font-family:Georgia,serif;font-size:clamp(28px,3vw,42px);line-height:1.15;max-width:none">
-      Не просто красиво. Участок должен оставаться сухим и ровным через три зимы.
-    </blockquote>
-  </div>
-</section>
-
-<section id="faq" class="block">
-  <div class="wrap split">
-    <div>
-      <p class="eyebrow">Вопросы</p>
-      <h2>Коротко о главном</h2>
-    </div>
-    <div class="faq">
-      <details><summary>Сколько это стоит?</summary><p>На сайте цен нет. Сумму называем после разговора об участке.</p></details>
-      <details><summary>Можно заказать только мощение или дренаж?</summary><p>Да. Проект, газон, полив, свет и посадки берутся отдельно. Под ключ — если хотите не координировать подрядчиков сами.</p></details>
-      <details><summary>Когда лучше начинать?</summary><p>Проект — в любой месяц. Земляные работы и посадки — с апреля по октябрь, мощение — пока грунт не промёрз.</p></details>
-      <details><summary>Что с гарантией?</summary><p>Срок гарантии на работы указываем в договоре после замера. На растения он зависит от сезона и ухода.</p></details>
-      <details><summary>Как удалить свои данные?</summary><p>Напишите через контакты на сайте, когда они будут указаны, с темой «Удалить данные». Подробнее — в <a href="privacy.html">политике</a>.</p></details>
-    </div>
-  </div>
-</section>
-
-<section id="contacts" class="block stone">
-  <div class="wrap split">
-    <div>
-      <p class="eyebrow">Контакты</p>
-      <h2>Напишите</h2>
-      <p class="lead">Имя и телефон. Больше ничего не спрашиваем.</p>
-      <ul class="contacts">
-        <li><a href="#contacts">Телефон и мессенджеры добавим, когда будут ваши</a></li>
-      </ul>
-    </div>
-    <form class="form" id="leadForm">
-      <label>Имя<input name="name" required autocomplete="name" /></label>
-      <label>Телефон<input name="phone" required inputmode="tel" autocomplete="tel" /></label>
-      <label class="check"><input type="checkbox" name="adult" required /> Мне есть 18 лет. Детские данные не собираем.</label>
-      <label class="check"><input type="checkbox" name="consent" required /> Согласен на обработку имени и телефона, чтобы мне ответили. <a href="privacy.html">Политика</a></label>
-      <button class="btn btn-dark full" type="submit">Жду ответ</button>
-      <p class="form-ok" id="formOk" role="status">Заявка отмечена в этом браузере. Позвоните или напишите в Telegram, чтобы мы её получили.</p>
-    </form>
-  </div>
-</section>
-
+  </section>
+</main>
 <footer class="footer">
   <div class="wrap footer-inner">
     <span>sihay</span>
@@ -241,15 +61,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </nav>
   </div>
 </footer>
-
 <div class="cookie" id="cookie" hidden>
-  <p>Сайт запоминает только ваш выбор по cookie в этом браузере. Рекламных и аналитических cookie нет. <a href="cookies.html">Политика cookie</a></p>
+  <p>Сайт запоминает только ваш выбор по cookie в этом браузере. <a href="cookies.html">Политика cookie</a></p>
   <button class="btn btn-dark" id="cookieOk" type="button">Понятно</button>
-</div>
-
-<div class="lightbox" id="lightbox" hidden>
-  <button type="button" aria-label="Закрыть">Закрыть</button>
-  <div class="ph"></div>
 </div>
 <script src="script.js"></script>
 </body>

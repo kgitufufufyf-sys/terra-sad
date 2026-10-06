@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Работы — sihay</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html">sihay</a>
+    <nav class="nav" id="nav">
+      <a href="works.html" aria-current="page">Работы</a>
+      <a href="services.html">Услуги</a>
+      <a href="process.html">Процесс</a>
+      <a href="faq.html">Вопросы</a>
+      <a class="btn btn-dark" href="contacts.html">Обсудить участок</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span></button>
+  </div>
+</header>
+<main class="page">
+  <div class="wrap">
+    <p class="eyebrow">Портфолио</p>
+    <h1>Работы</h1>
+    <div class="filters">
+      <button class="chip on" type="button" data-filter="all">Все</button>
+      <button class="chip" type="button" data-filter="garden">Сады</button>
+      <button class="chip" type="button" data-filter="stone">Камень</button>
+      <button class="chip" type="button" data-filter="lawn">Газон</button>
+    </div>
+    <div class="gallery" id="gallery">
+      <a data-cat="garden" href="works.html#zamedlenie" id="zamedlenie"><div class="ph" role="img" aria-label="Заглушка фото: сад"></div><span class="meta"><h3>Замедление</h3><p>Сад и терраса</p></span></a>
+      <a data-cat="stone" href="works.html#stena" id="stena"><div class="ph" role="img" aria-label="Заглушка фото: мощение"></div><span class="meta"><h3>Стена</h3><p>Мощение</p></span></a>
+      <a data-cat="lawn" href="works.html#rovny" id="rovny"><div class="ph" role="img" aria-label="Заглушка фото: газон"></div><span class="meta"><h3>Ровный</h3><p>Газон</p></span></a>
+      <a data-cat="stone" href="works.html#ferrum" id="ferrum"><div class="ph" role="img" aria-label="Заглушка фото: дорожки"></div><span class="meta"><h3>Феррум</h3><p>Дорожки и свет</p></span></a>
+      <a data-cat="garden" href="works.html#holm" id="holm"><div class="ph" role="img" aria-label="Заглушка фото: цветник"></div><span class="meta"><h3>Холм</h3><p>Цветники</p></span></a>
+      <a data-cat="lawn" href="works.html#promenad" id="promenad"><div class="ph" role="img" aria-label="Заглушка фото: газон у дома"></div><span class="meta"><h3>Променад</h3><p>Газон у дома</p></span></a>
+    </div>
+  </div>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="index.html">sihay</a><a href="contacts.html">Обсудить похожую задачу</a></div></footer>
+<div class="cookie" id="cookie" hidden><p>Сайт запоминает только ваш выбор по cookie. <a href="cookies.html">Политика cookie</a></p><button class="btn btn-dark" id="cookieOk" type="button">Понятно</button></div>
+<script src="script.js"></script>
+</body>
+</html>
