@@ -83,15 +83,35 @@ if (chips.length) {
 
 const viewer = document.getElementById('galleryViewer');
 if (viewer) {
-  cards.forEach((card) => card.addEventListener('click', () => {
+  const visibleCards = () => [...cards].filter((card) => !card.hidden);
+  let current = 0;
+  let touchX = 0;
+  const show = (index) => {
+    const list = visibleCards();
+    if (!list.length) return;
+    current = (index + list.length) % list.length;
+    const card = list[current];
     document.getElementById('viewerTitle').textContent = card.dataset.title;
     document.getElementById('viewerDescription').textContent = card.dataset.description;
     document.getElementById('viewerImage').setAttribute('aria-label', `Место для фото: ${card.dataset.title}`);
     document.getElementById('viewerService').href = `services.html#${card.dataset.service}`;
-    viewer.showModal();
-  }));
+    document.getElementById('viewerCount').textContent = `${current + 1} из ${list.length}`;
+    if (!viewer.open) viewer.showModal();
+  };
+  cards.forEach((card) => card.addEventListener('click', () => show(visibleCards().indexOf(card))));
+  document.getElementById('viewerPrev').addEventListener('click', () => show(current - 1));
+  document.getElementById('viewerNext').addEventListener('click', () => show(current + 1));
   document.getElementById('viewerClose').addEventListener('click', () => viewer.close());
   viewer.addEventListener('click', (event) => { if (event.target === viewer) viewer.close(); });
+  viewer.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') show(current - 1);
+    if (event.key === 'ArrowRight') show(current + 1);
+  });
+  viewer.addEventListener('touchstart', (event) => { touchX = event.changedTouches[0].clientX; }, { passive: true });
+  viewer.addEventListener('touchend', (event) => {
+    const delta = event.changedTouches[0].clientX - touchX;
+    if (Math.abs(delta) > 50) show(current + (delta < 0 ? 1 : -1));
+  }, { passive: true });
 }
 
 // Remove personal data saved by the former local-only form.

@@ -159,7 +159,10 @@ p { text-wrap: pretty; }
 .viewer-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
 .viewer-top h2 { font-size: 29px; }
 .viewer-top button { min-width: 44px; min-height: 44px; border: 1px solid var(--line); background: transparent; border-radius: 999px; }
-.viewer p { color: var(--muted); margin: 20px 0; }
+.viewer-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 8px 0 18px; }
+.viewer-nav button { min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; }
+.viewer-nav button:hover { background: var(--soft); }
+.viewer-nav span { color: var(--muted); font-size: 14px; }
 .viewer .ph { aspect-ratio: 1.65; }
 .reveal-ready [data-reveal]:not(.visible) { opacity: .05; transform: translateY(36px); }
 [data-reveal] { transition: transform .75s var(--ease), opacity .75s var(--ease); }
