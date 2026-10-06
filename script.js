@@ -1,67 +1,144 @@
 const header = document.querySelector('.header');
-const onScroll = () => header && header.classList.toggle('scrolled', window.scrollY > 20);
-onScroll();
-window.addEventListener('scroll', onScroll, { passive: true });
+const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 20);
+updateHeader();
+window.addEventListener('scroll', updateHeader, { passive: true });
 
+const menu = document.getElementById('nav');
 const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
-if (burger && nav) {
-  burger.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+if (menu && burger) {
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  };
+  burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => {
+    if (burger.getAttribute('aria-expanded') !== 'true') return;
+    if (event.key === 'Escape') {
+      setMenu(false);
+      burger.focus();
+    }
+    if (event.key === 'Tab') {
+      const items = [burger, ...menu.querySelectorAll('a')];
+      const index = items.indexOf(document.activeElement);
+      if (event.shiftKey && index === 0) {
+        event.preventDefault();
+        items.at(-1).focus();
+      } else if (!event.shiftKey && index === items.length - 1) {
+        event.preventDefault();
+        burger.focus();
+      }
+    }
+  });
+  window.matchMedia('(min-width: 781px)').addEventListener('change', (event) => {
+    if (event.matches) setMenu(false);
   });
 }
 
-document.querySelectorAll('.chip').forEach((chip) => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach((item) => item.classList.remove('on'));
-    chip.classList.add('on');
-    const filter = chip.dataset.filter;
-    document.querySelectorAll('#gallery a').forEach((card) => {
-      card.hidden = filter !== 'all' && card.dataset.cat !== filter;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const revealItems = document.querySelectorAll('[data-reveal]');
+if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.12 });
+  revealItems.forEach((item) => observer.observe(item));
+  document.documentElement.classList.add('reveal-ready');
+  reducedMotion.addEventListener('change', (event) => {
+    if (event.matches) document.documentElement.classList.remove('reveal-ready');
   });
-});
+}
+
+const chips = document.querySelectorAll('[data-filter]');
+const cards = document.querySelectorAll('.gallery-card');
+if (chips.length) {
+  const filterGallery = (value, updateUrl = false) => {
+    const category = [...chips].some((chip) => chip.dataset.filter === value) ? value : 'all';
+    chips.forEach((chip) => chip.setAttribute('aria-pressed', String(chip.dataset.filter === category)));
+    cards.forEach((card) => { card.hidden = category !== 'all' && card.dataset.cat !== category; });
+    document.getElementById('galleryCount').textContent = `Разделов: ${[...cards].filter((card) => !card.hidden).length}`;
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (category === 'all') url.searchParams.delete('category');
+      else url.searchParams.set('category', category);
+      window.history.pushState(null, '', url);
+    }
+  };
+  filterGallery(new URLSearchParams(window.location.search).get('category') || 'all');
+  chips.forEach((chip) => chip.addEventListener('click', () => filterGallery(chip.dataset.filter, true)));
+  window.addEventListener('popstate', () => filterGallery(new URLSearchParams(window.location.search).get('category') || 'all'));
+}
+
+const viewer = document.getElementById('galleryViewer');
+if (viewer) {
+  cards.forEach((card) => card.addEventListener('click', () => {
+    document.getElementById('viewerTitle').textContent = card.dataset.title;
+    document.getElementById('viewerDescription').textContent = card.dataset.description;
+    document.getElementById('viewerImage').setAttribute('aria-label', `Место для фото: ${card.dataset.title}`);
+    document.getElementById('viewerService').href = `services.html#${card.dataset.service}`;
+    viewer.showModal();
+  }));
+  document.getElementById('viewerClose').addEventListener('click', () => viewer.close());
+  viewer.addEventListener('click', (event) => { if (event.target === viewer) viewer.close(); });
+}
+
+// Remove personal data saved by the former local-only form.
+try { window.localStorage.removeItem('sihay-lead'); } catch { /* Storage may be blocked. */ }
+
+const services = {
+  proekt: 'Дизайн-проект', moshenie: 'Мощение', ozelenenie: 'Озеленение',
+  gazon: 'Газон и полив', drenazh: 'Дренаж и ливнёвка', svet: 'Освещение',
+};
+const service = services[new URLSearchParams(window.location.search).get('service')];
+const selection = document.getElementById('serviceSelection');
+if (service && selection) {
+  selection.hidden = false;
+  selection.textContent = `Направление: ${service}`;
+}
 
 const form = document.getElementById('leadForm');
-const ok = document.getElementById('formOk');
-if (form && ok) {
-  const saved = JSON.parse(localStorage.getItem('sihay-lead') || 'null');
-  if (saved) {
-    ok.hidden = false;
-    ok.textContent = 'В этом браузере уже есть заявка: ' + saved.name + ', ' + saved.phone;
-  }
+if (form) {
+  const status = document.getElementById('formOk');
+  const phone = form.elements.phone;
+  phone.addEventListener('input', () => phone.setCustomValidity(''));
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+    const digits = phone.value.replace(/\D/g, '');
+    phone.setCustomValidity(digits.length >= 7 && digits.length <= 15 ? '' : 'Укажите телефон: от 7 до 15 цифр с кодом страны.');
     if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    const lead = { name: data.get('name'), phone: data.get('phone') };
-    localStorage.setItem('sihay-lead', JSON.stringify(lead));
-    ok.hidden = false;
-    ok.textContent = 'Заявка сохранена только в этом браузере. На сервер она не уходит.';
-    form.reset();
+    const name = form.elements.name.value.trim();
+    const text = `Обращение sihay\n${service ? `Направление: ${service}\n` : ''}${name ? `Имя: ${name}\n` : ''}Телефон: ${phone.value.trim()}\n\nЭтот файл не отправлен получателю.\n`;
+    const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'sihay-obraschenie.txt';
+    document.body.append(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    status.hidden = false;
+    status.textContent = 'Файл подготовлен для скачивания. Данные не отправлены. После сохранения можно очистить поля.';
   });
-}
-
-const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const frames = document.querySelectorAll('.scene, .shot');
-if (motion) {
-  frames.forEach((frame) => frame.classList.add('in'));
-} else if (frames.length) {
-  const watcher = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add('in');
-    });
-  }, { threshold: 0.35 });
-  frames.forEach((frame) => watcher.observe(frame));
+  form.addEventListener('reset', () => {
+    phone.setCustomValidity('');
+    status.hidden = false;
+    status.textContent = 'Поля очищены. Скачанный файл удаляется отдельно на вашем устройстве.';
+  });
 }
 
 const cookie = document.getElementById('cookie');
-const cookieOk = document.getElementById('cookieOk');
-if (cookie && localStorage.getItem('sihay-cookie') !== '1') cookie.hidden = false;
-if (cookieOk) {
-  cookieOk.addEventListener('click', () => {
-    localStorage.setItem('sihay-cookie', '1');
+if (cookie) {
+  let dismissed = false;
+  try { dismissed = window.sessionStorage.getItem('sihay-cookie-notice') === '1'; } catch { /* Notice also works without storage. */ }
+  cookie.hidden = dismissed;
+  document.getElementById('cookieOk')?.addEventListener('click', () => {
     cookie.hidden = true;
+    try { window.sessionStorage.setItem('sihay-cookie-notice', '1'); } catch { /* Dismiss for this page only. */ }
   });
 }

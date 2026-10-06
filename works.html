@@ -1,47 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Работы — sihay</title>
-<link rel="stylesheet" href="styles.css" />
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f5f7f2"><meta name="description" content="Галерея направлений sihay: сады, мощение и газон. Фото-разделы без вымышленных проектов."><title>Галерея · sihay</title><link rel="stylesheet" href="styles.css?v=20261006-quality"><script src="script.js?v=20261006-quality" defer></script></head>
 <body>
-<header class="header">
-  <div class="wrap header-inner">
-    <a class="logo" href="index.html">sihay</a>
-    <nav class="nav" id="nav">
-      <a href="works.html" aria-current="page">Работы</a>
-      <a href="services.html">Услуги</a>
-      <a href="process.html">Процесс</a>
-      <a href="faq.html">Вопросы</a>
-      <a class="btn btn-dark" href="contacts.html">Обсудить участок</a>
-    </nav>
-    <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span></button>
+<a class="skip" href="#content">К содержанию</a>
+<header class="header"><div class="wrap header-inner"><a class="logo" href="index.html" translate="no">sihay<span>ландшафт</span></a><nav class="nav" id="nav" aria-label="Основная навигация"><a href="services.html">Услуги</a><a href="works.html" aria-current="page">Галерея</a><a href="process.html">Этапы</a><a href="faq.html">Вопросы</a><a class="btn btn-dark" href="contacts.html">Обсудить участок</a></nav><button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-controls="nav" aria-expanded="false"><span></span><span></span></button></div></header>
+<main class="page" id="content"><div class="wrap">
+  <div class="page-head"><div><a class="breadcrumb" href="index.html">Главная / Галерея</a><h1>Галерея направлений</h1></div><p class="lead">Сады, дорожки и газон. Выберите раздел и откройте карточку, чтобы посмотреть её описание.</p></div>
+  <p class="gallery-note">Фотографии объектов пока не добавлены. Плашки обозначают разделы, а не реализованные проекты.</p>
+  <div class="filters" role="group" aria-label="Фильтр галереи"><button class="chip" type="button" data-filter="all" aria-pressed="true">Все разделы</button><button class="chip" type="button" data-filter="garden" aria-pressed="false">Сады и посадки</button><button class="chip" type="button" data-filter="stone" aria-pressed="false">Мощение</button><button class="chip" type="button" data-filter="lawn" aria-pressed="false">Газон и полив</button></div>
+  <p class="gallery-note" id="galleryCount" aria-live="polite">Разделов: 6</p>
+  <div class="gallery" id="gallery">
+    <button class="gallery-card" type="button" data-cat="garden" data-title="Посадки деревьев" data-description="Подбор и размещение деревьев с учётом освещённости, размера кроны и расстояния до построек." data-service="ozelenenie"><div class="ph" role="img" aria-label="Место для фото посадки деревьев"></div><h2>Посадки деревьев</h2><p>Сады и посадки · открыть описание</p></button>
+    <button class="gallery-card" type="button" data-cat="stone" data-title="Садовые дорожки" data-description="Маршруты движения, материалы покрытий, раскладка и сопряжение дорожек с газоном." data-service="moshenie"><div class="ph" role="img" aria-label="Место для фото садовой дорожки"></div><h2>Садовые дорожки</h2><p>Мощение · открыть описание</p></button>
+    <button class="gallery-card" type="button" data-cat="lawn" data-title="Газон" data-description="Подготовка почвы, планировка поверхности и выбор газона для условий участка." data-service="gazon"><div class="ph" role="img" aria-label="Место для фото газона"></div><h2>Газон</h2><p>Газон и полив · открыть описание</p></button>
+    <button class="gallery-card" type="button" data-cat="stone" data-title="Площадки и ступени" data-description="Покрытия для отдыха и парковки, перепады уровней и ступени. Решения согласуют с нагрузками и водоотводом." data-service="moshenie"><div class="ph" role="img" aria-label="Место для фото площадки"></div><h2>Площадки и ступени</h2><p>Мощение · открыть описание</p></button>
+    <button class="gallery-card" type="button" data-cat="garden" data-title="Цветники и изгороди" data-description="Композиции из кустарников и многолетников, разделение зон участка живыми изгородями." data-service="ozelenenie"><div class="ph" role="img" aria-label="Место для фото цветника"></div><h2>Цветники и изгороди</h2><p>Сады и посадки · открыть описание</p></button>
+    <button class="gallery-card" type="button" data-cat="lawn" data-title="Автоматический полив" data-description="Разделение на зоны, размещение оборудования и настройка полива под газон и посадки." data-service="gazon"><div class="ph" role="img" aria-label="Место для фото системы полива"></div><h2>Автоматический полив</h2><p>Газон и полив · открыть описание</p></button>
   </div>
-</header>
-<main class="page">
-  <div class="wrap">
-    <p class="eyebrow">Портфолио</p>
-    <h1>Работы</h1>
-    <div class="filters">
-      <button class="chip on" type="button" data-filter="all">Все</button>
-      <button class="chip" type="button" data-filter="garden">Сады</button>
-      <button class="chip" type="button" data-filter="stone">Камень</button>
-      <button class="chip" type="button" data-filter="lawn">Газон</button>
-    </div>
-    <div class="gallery" id="gallery">
-      <a data-cat="garden" href="works.html#zamedlenie" id="zamedlenie"><div class="ph" role="img" aria-label="Заглушка фото: сад"></div><span class="meta"><h3>Замедление</h3><p>Сад и терраса</p></span></a>
-      <a data-cat="stone" href="works.html#stena" id="stena"><div class="ph" role="img" aria-label="Заглушка фото: мощение"></div><span class="meta"><h3>Стена</h3><p>Мощение</p></span></a>
-      <a data-cat="lawn" href="works.html#rovny" id="rovny"><div class="ph" role="img" aria-label="Заглушка фото: газон"></div><span class="meta"><h3>Ровный</h3><p>Газон</p></span></a>
-      <a data-cat="stone" href="works.html#ferrum" id="ferrum"><div class="ph" role="img" aria-label="Заглушка фото: дорожки"></div><span class="meta"><h3>Феррум</h3><p>Дорожки и свет</p></span></a>
-      <a data-cat="garden" href="works.html#holm" id="holm"><div class="ph" role="img" aria-label="Заглушка фото: цветник"></div><span class="meta"><h3>Холм</h3><p>Цветники</p></span></a>
-      <a data-cat="lawn" href="works.html#promenad" id="promenad"><div class="ph" role="img" aria-label="Заглушка фото: газон у дома"></div><span class="meta"><h3>Променад</h3><p>Газон у дома</p></span></a>
-    </div>
-  </div>
-</main>
-<footer class="footer"><div class="wrap footer-inner"><a href="index.html">sihay</a><a href="contacts.html">Обсудить похожую задачу</a></div></footer>
-<div class="cookie" id="cookie" hidden><p>Сайт запоминает только ваш выбор по cookie. <a href="cookies.html">Политика cookie</a></p><button class="btn btn-dark" id="cookieOk" type="button">Понятно</button></div>
-<script src="script.js"></script>
-</body>
-</html>
+</div></main>
+<dialog class="viewer" id="galleryViewer" aria-labelledby="viewerTitle"><div class="viewer-top"><h2 id="viewerTitle">Раздел галереи</h2><button type="button" id="viewerClose" aria-label="Закрыть описание">×</button></div><div class="ph" role="img" id="viewerImage" aria-label="Место для фото"></div><p id="viewerDescription"></p><a class="text-link" id="viewerService" href="services.html">Состав услуги</a></dialog>
+<footer class="footer"><div class="wrap footer-top"><a class="logo" href="index.html" translate="no">sihay<span>ландшафт</span></a><nav class="footer-links" aria-label="Документы и контакты"><a href="contacts.html">Обращение</a><a href="privacy.html">Конфиденциальность</a><a href="terms.html">Условия использования</a><a href="refund.html">Возврат</a><a href="cookies.html">Cookie</a></nav></div><div class="wrap footer-bottom">Ландшафтное проектирование и благоустройство</div></footer>
+<aside class="cookie" id="cookie" hidden aria-label="Данные браузера"><p>Аналитика не подключена. Закрытие сообщения запоминается на время вкладки. <a href="cookies.html">О данных браузера</a></p><button id="cookieOk" type="button">Закрыть</button></aside>
+</body></html>
