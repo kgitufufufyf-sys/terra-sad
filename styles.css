@@ -18,7 +18,13 @@ h3{font-size:22px;color:var(--ink)}
 .skip{position:absolute;left:12px;top:-48px;background:#fff;padding:8px 12px}
 .skip:focus{top:12px}
 .header{position:fixed;top:0;left:0;right:0;z-index:20;background:transparent;transition:background-color .3s ease,box-shadow .3s ease}
-.header.scrolled{background:rgba(250,248,245,.9);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(45,58,46,.08)}
+.header .nav a,.header .logo{color:#f7f4ee}
+.header .burger span{background:#f7f4ee}
+.header.scrolled{background:rgba(250,248,245,.94);box-shadow:0 1px 0 rgba(45,58,46,.08)}
+.header.scrolled .nav a,.header.scrolled .logo{color:var(--ink)}
+.header.scrolled .burger span{background:var(--ink)}
+.header .btn-line{border-color:rgba(247,244,238,.55);color:#f7f4ee;background:transparent}
+.header.scrolled .btn-line{border-color:rgba(45,58,46,.25);color:var(--ink);background:#fff}
 .header-inner{height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{position:absolute;left:50%;transform:translateX(-50%);font-size:22px;letter-spacing:-.03em;font-weight:300}
 .nav{display:flex;align-items:center;gap:22px}
@@ -28,7 +34,12 @@ h3{font-size:22px;color:var(--ink)}
 .btn-line{border-color:rgba(45,58,46,.25);background:rgba(255,255,255,.55)}
 .btn-dark:hover{background:var(--sage)}
 .btn-line:hover{background:#fff}
-.hero{min-height:100vh;display:grid;align-items:end;padding:120px 0 72px}
+.hero{position:relative;min-height:100vh;margin:0;padding:0;overflow:hidden;color:#f7f4ee}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 70%}
+.hero-copy{position:relative;z-index:1;padding:148px 0 72px}
+.hero h1{color:#f7f4ee;max-width:16ch;font-size:clamp(46px,6vw,80px)}
+.hero .lead{color:rgba(247,244,238,.9)}
+.hero .btn-line{color:#f7f4ee;border-color:rgba(247,244,238,.6)}
 .hero-grid,.split{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 .home-section{padding:72px 0}
