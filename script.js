@@ -127,6 +127,7 @@ try { window.localStorage.removeItem('sihay-lead'); } catch { /* Storage may be 
 const services = {
   proekt: 'Дизайн-проект', moshenie: 'Мощение',
   gazon: 'Газон и полив', drenazh: 'Дренаж и ливнёвка', svet: 'Освещение',
+  vodoemy: 'Водоёмы', fontany: 'Фонтаны и каскады', maf: 'Малые формы',
 };
 const service = services[new URLSearchParams(window.location.search).get('service')];
 const selection = document.getElementById('serviceSelection');
