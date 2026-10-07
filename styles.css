@@ -204,6 +204,8 @@ p { text-wrap: pretty; }
 .form h2 { font-size: 23px; }
 .form > label { display: grid; gap: 8px; font-size: 14px; }
 .form input:not([type="checkbox"]) { width: 100%; min-width: 0; border: 1px solid #83967a; border-radius: 999px; padding: 13px 14px; background: #fff; transition: border-color .2s ease; }
+.form textarea { width: 100%; min-width: 0; border: 1px solid #83967a; border-radius: 14px; padding: 13px 14px; background: #fff; font: inherit; line-height: 1.5; resize: vertical; transition: border-color .2s ease; }
+.form textarea:hover { border-color: var(--accent); }
 .form input:not([type="checkbox"]):hover { border-color: var(--accent); }
 .form .check { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; line-height: 1.6; }
 .check input { flex-shrink: 0; width: 19px; height: 19px; margin: 2px 0 0; accent-color: var(--accent); }

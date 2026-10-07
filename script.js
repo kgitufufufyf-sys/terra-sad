@@ -135,33 +135,51 @@ if (service && selection) {
   selection.textContent = `Направление: ${service}`;
 }
 
+const LEAD_ENDPOINT = 'https://sihay-lead.kgitufufufyf.workers.dev';
+
 const form = document.getElementById('leadForm');
 if (form) {
   const status = document.getElementById('formOk');
+  const submit = document.getElementById('leadSubmit');
   const phone = form.elements.phone;
   phone.addEventListener('input', () => phone.setCustomValidity(''));
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const digits = phone.value.replace(/\D/g, '');
     phone.setCustomValidity(digits.length >= 7 && digits.length <= 15 ? '' : 'Укажите телефон: от 7 до 15 цифр с кодом страны.');
     if (!form.reportValidity()) return;
-    const name = form.elements.name.value.trim();
-    const text = `Обращение sihay\n${service ? `Направление: ${service}\n` : ''}${name ? `Имя: ${name}\n` : ''}Телефон: ${phone.value.trim()}\n\nЭтот файл не отправлен получателю.\n`;
-    const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'sihay-obraschenie.txt';
-    document.body.append(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    status.hidden = false;
-    status.textContent = 'Файл подготовлен для скачивания. Данные не отправлены. После сохранения можно очистить поля.';
-  });
-  form.addEventListener('reset', () => {
-    phone.setCustomValidity('');
-    status.hidden = false;
-    status.textContent = 'Поля очищены. Скачанный файл удаляется отдельно на вашем устройстве.';
+    const payload = {
+      name: form.elements.name.value.trim(),
+      phone: phone.value.trim(),
+      service: service ?? '',
+      message: form.elements.message ? form.elements.message.value.trim() : '',
+    };
+    submit.disabled = true;
+    status.hidden = true;
+    try {
+      const res = await fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        status.hidden = false;
+        status.textContent = 'Заявка отправлена. Свяжусь с вами по указанному номеру.';
+        form.reset();
+      } else if (data.error === 'phone') {
+        phone.setCustomValidity('Проверьте номер телефона.');
+        if (!form.reportValidity()) return;
+      } else {
+        status.hidden = false;
+        status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
+      }
+    } catch {
+      status.hidden = false;
+      status.textContent = 'Проблема с сетью. Проверьте подключение и попробуйте ещё раз.';
+    } finally {
+      submit.disabled = false;
+    }
   });
 }
 
