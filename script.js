@@ -125,6 +125,7 @@ if (viewer) {
 try { window.localStorage.removeItem('sihay-lead'); } catch { /* Storage may be blocked. */ }
 
 const services = {
+  ozelenenie: 'Озеленение',
   blago: 'Благоустройство территории', vodoemy: 'Водоёмы', fontany: 'Фонтаны и каскады', maf: 'Малые формы',
 };
 const service = services[new URLSearchParams(window.location.search).get('service')];
