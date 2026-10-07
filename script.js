@@ -93,7 +93,12 @@ if (viewer) {
     const card = list[current];
     document.getElementById('viewerTitle').textContent = card.dataset.title;
     document.getElementById('viewerDescription').textContent = card.dataset.description;
-    document.getElementById('viewerImage').setAttribute('aria-label', `Место для фото: ${card.dataset.title}`);
+    const cardImg = card.querySelector('img');
+    const viewerImage = document.getElementById('viewerImage');
+    viewerImage.classList.toggle('has-img', Boolean(cardImg));
+    viewerImage.replaceChildren();
+    if (cardImg) viewerImage.append(cardImg.cloneNode());
+    viewerImage.setAttribute('aria-label', `Фото: ${card.dataset.title}`);
     document.getElementById('viewerService').href = `services.html#${card.dataset.service}`;
     document.getElementById('viewerCount').textContent = `${current + 1} из ${list.length}`;
     if (!viewer.open) viewer.showModal();
