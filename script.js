@@ -47,11 +47,13 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const revealItems = document.querySelectorAll('[data-reveal]');
 if (!reducedMotion.matches && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+    const shown = entries.filter((entry) => entry.isIntersecting);
+    shown.forEach((entry, index) => {
+      const target = entry.target;
+      target.style.transitionDelay = `${Math.min(index * 60, 240)}ms`;
+      target.classList.add('visible');
+      target.addEventListener('transitionend', () => { target.style.transitionDelay = ''; }, { once: true });
+      observer.unobserve(target);
     });
   }, { threshold: 0.12 });
   revealItems.forEach((item) => observer.observe(item));
