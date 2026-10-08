@@ -69,8 +69,8 @@ if (heroV2 && !reducedMotion.matches) {
   const updateHero = () => {
     const total = heroV2.offsetHeight - innerHeight;
     const passed = Math.min(1, Math.max(0, -heroV2.getBoundingClientRect().top / (total || 1)));
-    copy.style.opacity = String(1 - passed);
-    copy.style.transform = `translateY(${passed * -70}px)`;
+    copy.style.opacity = String(1 - passed * 0.55);
+    copy.style.transform = `translateY(${passed * -60}px)`;
   };
   updateHero();
   window.addEventListener('scroll', updateHero, { passive: true });
