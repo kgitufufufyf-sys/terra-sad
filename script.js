@@ -91,6 +91,39 @@ if (statement && !reducedMotion.matches) {
   window.addEventListener('resize', parallax, { passive: true });
 }
 
+document.querySelectorAll('.hero-giant').forEach((el) => {
+  const text = el.textContent;
+  el.textContent = '';
+  [...text].forEach((ch, i) => {
+    const s = document.createElement('span');
+    s.className = 'wl';
+    s.textContent = ch;
+    s.style.setProperty('--i', String(i));
+    el.append(s);
+  });
+});
+
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.service-tile').forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+}
+
+const toTop = document.createElement('button');
+toTop.type = 'button';
+toTop.className = 'to-top';
+toTop.innerHTML = '&uarr;';
+toTop.setAttribute('aria-label', 'Наверх');
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' }));
+document.body.append(toTop);
+const updateToTop = () => toTop.classList.toggle('on', window.scrollY > 700);
+updateToTop();
+window.addEventListener('scroll', updateToTop, { passive: true });
+
 const revealItems = document.querySelectorAll('[data-reveal]');
 if (!reducedMotion.matches && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
