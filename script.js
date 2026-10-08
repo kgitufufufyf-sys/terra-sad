@@ -77,6 +77,20 @@ if (heroV2 && !reducedMotion.matches) {
   window.addEventListener('resize', updateHero, { passive: true });
 }
 
+const statement = document.querySelector('.statement');
+if (statement && !reducedMotion.matches) {
+  const img = statement.querySelector('img');
+  const parallax = () => {
+    const r = statement.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const shift = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+    img.style.transform = `translateY(${shift * -34}px)`;
+  };
+  parallax();
+  window.addEventListener('scroll', parallax, { passive: true });
+  window.addEventListener('resize', parallax, { passive: true });
+}
+
 const revealItems = document.querySelectorAll('[data-reveal]');
 if (!reducedMotion.matches && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
