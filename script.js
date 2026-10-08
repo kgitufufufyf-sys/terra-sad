@@ -62,6 +62,21 @@ if (menu && burger) {
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const heroV2 = document.querySelector('.hero-v2');
+if (heroV2 && !reducedMotion.matches) {
+  const copy = heroV2.querySelector('.hero-copy');
+  const updateHero = () => {
+    const total = heroV2.offsetHeight - innerHeight;
+    const passed = Math.min(1, Math.max(0, -heroV2.getBoundingClientRect().top / (total || 1)));
+    copy.style.opacity = String(1 - passed);
+    copy.style.transform = `translateY(${passed * -70}px)`;
+  };
+  updateHero();
+  window.addEventListener('scroll', updateHero, { passive: true });
+  window.addEventListener('resize', updateHero, { passive: true });
+}
+
 const revealItems = document.querySelectorAll('[data-reveal]');
 if (!reducedMotion.matches && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
