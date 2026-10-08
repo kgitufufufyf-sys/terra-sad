@@ -3,11 +3,29 @@ if (!location.hash) window.scrollTo(0, 0);
 window.addEventListener('pageshow', () => {
   if (!location.hash) window.scrollTo(0, 0);
 });
+window.addEventListener('pagereveal', (event) => {
+  if (event.viewTransition && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    event.viewTransition.skipTransition();
+  }
+});
 
 const header = document.querySelector('.header');
 const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 20);
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
+
+const progress = document.createElement('div');
+progress.className = 'scroll-progress';
+progress.setAttribute('aria-hidden', 'true');
+if (!CSS.supports('animation-timeline: scroll()')) {
+  document.body.prepend(progress);
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  };
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive: true });
+}
 
 const menu = document.getElementById('nav');
 const burger = document.getElementById('burger');
@@ -99,7 +117,13 @@ if (viewer) {
     const viewerImage = document.getElementById('viewerImage');
     viewerImage.classList.toggle('has-img', Boolean(cardImg));
     viewerImage.replaceChildren();
-    if (cardImg) viewerImage.append(cardImg.cloneNode());
+    if (cardImg) {
+      const fresh = cardImg.cloneNode();
+      fresh.style.opacity = '0';
+      fresh.style.transition = 'opacity .35s ease';
+      fresh.addEventListener('load', () => requestAnimationFrame(() => { fresh.style.opacity = '1'; }), { once: true });
+      viewerImage.append(fresh);
+    }
     viewerImage.setAttribute('aria-label', `Фото: ${card.dataset.title}`);
     document.getElementById('viewerService').href = `services.html#${card.dataset.service}`;
     document.getElementById('viewerCount').textContent = `${current + 1} из ${list.length}`;

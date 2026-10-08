@@ -246,9 +246,41 @@ p { text-wrap: pretty; }
 .viewer-nav button:hover { background: var(--soft); }
 .viewer-nav span { color: var(--muted); font-size: 14px; }
 .viewer .ph { aspect-ratio: 1.65; }
-.reveal-ready [data-reveal]:not(.visible) { opacity: 0; transform: translateY(24px); }
-[data-reveal] { transition: transform .6s var(--ease-out), opacity .6s var(--ease-out); }
+.reveal-ready [data-reveal]:not(.visible) { opacity: 0; transform: translateY(26px) scale(.985); }
+[data-reveal] { transition: transform .7s var(--ease-out), opacity .7s var(--ease-out); }
 [data-reveal]:focus-within { opacity: 1 !important; transform: none !important; }
+
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.06); } }
+.hero-photo { animation: kenburns 22s var(--ease-out) infinite alternate; will-change: transform; }
+
+.ph img { transition: transform .6s var(--ease-out), filter .35s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .gallery-card:hover .ph img, .service-tile:hover .ph img { transform: scale(1.05); }
+}
+
+@keyframes bannerShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.feature-banner { background: linear-gradient(115deg, #31583b 20%, #26492f 50%, #31583b 80%); background-size: 220% 100%; animation: bannerShift 14s ease-in-out infinite; }
+
+.chip { transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform 120ms var(--ease-out); }
+.chip:active { transform: scale(.95); }
+
+@keyframes pageIn { from { opacity: 0; transform: translateY(12px); } }
+.page { animation: pageIn .5s var(--ease-out) both; }
+
+:root { interpolate-size: allow-keywords; }
+details::details-content { block-size: 0; overflow: clip; transition: block-size .35s var(--ease-out), content-visibility .35s; transition-behavior: allow-discrete; }
+details[open]::details-content { block-size: auto; }
+
+.scroll-progress { position: fixed; inset: 0 0 auto; z-index: 40; height: 2px; background: linear-gradient(90deg, var(--accent), #6f9a5b); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress { animation: progressGrow linear both; animation-timeline: scroll(root); }
+  }
+}
+@keyframes progressGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (min-width: 1500px) { .hero { padding-top: 200px; } }
 @media (max-width: 960px) {
   .nav { gap: 18px; }
@@ -304,4 +336,7 @@ p { text-wrap: pretty; }
   .btn, .burger span, .text-link::after, .tile-title::after, .chip, .cookie { transition: none; }
   .home .hero-copy > * { animation: none; }
   .viewer[open] { animation: none; }
+  .hero-photo, .feature-banner, .page, .scroll-progress { animation: none !important; }
+  .ph img { transition: none; }
+  details::details-content { transition: none; }
 }
