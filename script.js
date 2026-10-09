@@ -14,19 +14,6 @@ const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY >
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
-const progress = document.createElement('div');
-progress.className = 'scroll-progress';
-progress.setAttribute('aria-hidden', 'true');
-if (!CSS.supports('animation-timeline: scroll()')) {
-  document.body.prepend(progress);
-  const updateProgress = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
-  };
-  updateProgress();
-  window.addEventListener('scroll', updateProgress, { passive: true });
-}
-
 const menu = document.getElementById('nav');
 const burger = document.getElementById('burger');
 if (menu && burger) {

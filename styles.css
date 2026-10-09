@@ -336,13 +336,11 @@ p { text-wrap: pretty; }
 details::details-content { block-size: 0; overflow: clip; transition: block-size .35s var(--ease-out), content-visibility .35s; transition-behavior: allow-discrete; }
 details[open]::details-content { block-size: auto; }
 
-.scroll-progress { position: fixed; inset: 0 0 auto; z-index: 40; height: 2px; background: linear-gradient(90deg, var(--accent), #6f9a5b); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
 @supports (animation-timeline: scroll()) {
   @media (prefers-reduced-motion: no-preference) {
-    .scroll-progress { animation: progressGrow linear both; animation-timeline: scroll(root); }
-  }
+      }
 }
-@keyframes progressGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
 @media (min-width: 1500px) { .hero { padding-top: 200px; } }
 @media (max-width: 960px) {
   .nav { gap: 18px; }
@@ -407,8 +405,7 @@ details[open]::details-content { block-size: auto; }
   .btn, .burger span, .text-link::after, .tile-title::after, .chip, .cookie { transition: none; }
   .home .hero-copy > * { animation: none; }
   .viewer[open] { animation: none; }
-  .hero-photo, .feature-banner, .page, .scroll-progress { animation: none !important; }
-  .ph img { transition: none; }
+  .hero-photo, .feature-banner, .page,   .ph img { transition: none; }
   details::details-content { transition: none; }
   .hero-side-a, .hero-side-b { animation: none; }
   .footer-giant { animation: none; }
